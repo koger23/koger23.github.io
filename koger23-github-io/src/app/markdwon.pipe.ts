@@ -5,7 +5,7 @@ import marked from "marked";
   name: 'markdown'
 })
 
-export class MarkdownPipe implements PipeTransform {
+export class Markdown implements PipeTransform {
 
   transform(value: any, args?: any[]): any {
     if (value && value.length > 0) {
