@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+  background-color: white;
+}
+
+img {
+  max-width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 20rem;
+}
+
+code {
+  background-color: #f6f6f6;
+  border-radius: 5px;
+  padding: 3px;
+  overflow: auto;
+}
+
+pre {
+  background-color: #f6f6f6;
+  border-radius: 5px;
+  padding: 12px;
+  overflow: auto;
+  border: darkgray 1px solid;
+}
+
+pre,
+code {
+  font-family: "Courier New", Courier, monospace;
+}
+
+@media only screen and (min-width: 601px) {
+  html,
+  body {
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+    /* background-color: #c1c2c4; */
+    background-color: #a5aec0;
+    /* background-color: #0d1116; */
+  }
+}
