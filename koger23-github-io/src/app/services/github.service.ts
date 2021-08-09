@@ -21,6 +21,12 @@ export class GithubService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Fetching the README.md content of the repository, which has the name as your username.
+   * Repo must be the same as your github username.
+   * 
+   * @returns file content as string.
+   */
   public getAboutMe() {
     const HTTP_OPTIONS = {
       headers: new HttpHeaders({
@@ -34,6 +40,12 @@ export class GithubService {
     return this.http.get<string>(URL, HTTP_OPTIONS);
   }
 
+  /**
+   * Fetching the list of projects.
+   * Repo must be the same as your github username.
+   * 
+   * @returns file content as string.
+   */
   public getProjectList(): Observable<string> {
     const HTTP_OPTIONS = {
       headers: new HttpHeaders({
@@ -42,13 +54,46 @@ export class GithubService {
       }),
       responseType: 'text' as 'json',
     };
-    const URL: string = `${this.GITHUB_RAW_URL}/${this.USERNAME}/${this.USERNAME}/main/koger23.github.io.json`;
+    const URL: string = `${this.GITHUB_RAW_URL}/${this.USERNAME}/${this.USERNAME}/main/${this.USERNAME}.github.io.json`;
 
     return this.http.get<string>(URL, HTTP_OPTIONS);
   }
-}
 
-interface Config {
-  projects: string[];
-  devuser: string;
+  /**
+   * Fetching the home post, which is the content of 'welcome.md'.
+   * Repo must be the same as your github username.
+   * 
+   * @returns file content as string.
+   */
+  public getHomePost() {
+    const HTTP_OPTIONS = {
+      headers: new HttpHeaders({
+        Accept: 'text/html',
+        'Content-Type': 'text/plain; charset=utf-8',
+      }),
+      responseType: 'text' as 'json',
+    };
+    const URL: string = `${this.GITHUB_RAW_URL}/${this.USERNAME}/${this.USERNAME}/main/posts/welcome.md`;
+
+    return this.http.get<string>(URL, HTTP_OPTIONS);
+  }
+
+  /**
+   * Fetching the content of 'yourusername.github.io.md'.
+   * Repo must be the same as your github username.
+   * 
+   * @returns file content as string.
+   */
+  public getAboutPage() {
+    const HTTP_OPTIONS = {
+      headers: new HttpHeaders({
+        Accept: 'text/html',
+        'Content-Type': 'text/plain; charset=utf-8',
+      }),
+      responseType: 'text' as 'json',
+    };
+    const URL: string = `${this.GITHUB_RAW_URL}/${this.USERNAME}/${this.USERNAME}/main/${this.USERNAME}.github.io.md`;
+
+    return this.http.get<string>(URL, HTTP_OPTIONS);
+  }
 }

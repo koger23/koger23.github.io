@@ -2,4 +2,8 @@
   <ul *ngFor="let project of projects">
     <li routerLink="/projects/{{ project }}">{{ project }}</li>
   </ul>
+  <p *ngIf="projects.length == 0">
+    No available project to list. Please add to the config file, if you need
+    more help, please check "Help" section.
+  </p>
 </div>

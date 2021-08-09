@@ -1,0 +1,10 @@
+<div class="container" *ngIf="contentAboutMe.length > 0">
+  <h3>About Me</h3>
+  <hr>
+  <p [innerHTML]="contentAboutMe | markdown"></p>
+</div>
+<div class="container" *ngIf="contentAboutSite.length > 0">
+  <h3>About The Site</h3>
+  <hr>
+  <p [innerHTML]="contentAboutSite | markdown"></p>
+</div>

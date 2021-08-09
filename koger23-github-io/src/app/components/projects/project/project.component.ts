@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GithubService } from 'src/app/services/github.service';
 import { ProjectService } from 'src/app/services/project.service';
+import { Utils } from 'src/app/helpers/utils'
 
 @Component({
   selector: 'app-project',
@@ -31,7 +32,8 @@ export class ProjectComponent implements OnInit {
     this.projectService.getProjectReadme(this.reponame).subscribe({
       next: (resp) => {
         if (resp) {
-          this.content = this.replaceAll(
+          // replace ./ for image paths in markdown files
+          this.content = Utils.replaceAll(
             '(./',
             `(${this.githubService.GITHUB_RAW_URL}/${this.githubService.USERNAME}/${this.reponame}/main/`,
             resp
@@ -39,12 +41,5 @@ export class ProjectComponent implements OnInit {
         }
       },
     });
-  }
-
-  private replaceAll(find: string, replace: string, str: string): string {
-    while (str.indexOf(find) > -1) {
-      str = str.replace(find, replace);
-    }
-    return str;
   }
 }
