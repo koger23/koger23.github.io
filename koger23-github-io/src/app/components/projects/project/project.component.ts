@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { GithubService } from 'src/app/services/github.service';
 import { ProjectService } from 'src/app/services/project.service';
-import { Utils } from 'src/app/helpers/utils'
+import { Utils } from 'src/app/helpers/utils';
 
 @Component({
   selector: 'app-project',
@@ -22,10 +22,14 @@ export class ProjectComponent implements OnInit {
   private reponame: string;
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe((params) => {
-      this.reponame = params['id'];
-      this.getProjectReadme();
-    });
+    if (this.projectService.selectedProject) {
+      this.content = this.projectService.selectedProject.content;
+    } else {
+      this.routeSub = this.route.params.subscribe((params) => {
+        this.reponame = params['id'];
+        this.getProjectReadme();
+      });
+    }
   }
 
   private getProjectReadme() {

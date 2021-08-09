@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { GithubService } from '../services/github.service';
+import { Project } from '../models/project.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProjectService {
   public projectNames: string[] = [];
+  public selectedProject: Project;
 
   constructor(private http: HttpClient, private githubService: GithubService) {}
 

@@ -6,4 +6,12 @@ export class Utils {
 
     return str;
   }
+
+  public static removeHtmlTags(htmlContent: string) {
+      const pattern = new RegExp("\\<.*?\\>");
+
+      htmlContent = new String(htmlContent).replace(pattern, "");
+   
+      return htmlContent;
+  }
 }

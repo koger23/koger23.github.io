@@ -11,9 +11,11 @@ import { ProjectComponent } from './components/projects/project/project.componen
 import { FooterComponent } from './site-layout/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
+import { ProjectCardComponent } from './components/projects/project-card/project-card.component';
+import { ShortenContentPipe } from './pipes/shorten-content.pipe';
 
 @NgModule({
-  declarations: [AppComponent, Markdown, HeaderComponent, ProjectsComponent, ProjectComponent, FooterComponent, HomeComponent, AboutComponent],
+  declarations: [AppComponent, Markdown, HeaderComponent, ProjectsComponent, ProjectComponent, FooterComponent, HomeComponent, AboutComponent, ProjectCardComponent, ShortenContentPipe],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

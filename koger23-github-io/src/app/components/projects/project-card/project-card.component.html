@@ -1,0 +1,7 @@
+<div class="container">
+  <h4>{{ project.name }}</h4>
+  <hr />
+  <div>
+    <p>{{ project.content | markdown | shortenContent }} <a routerLink="/projects/{{ project.name }}" (click)="onSelectProject()">Read more</a></p>
+  </div>
+</div>
