@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { GithubService } from '../services/github.service';
 import { Project } from '../models/project.model';
+import { OverlayService } from './overlay.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class ProjectService {
   public projectNames: string[] = [];
   public selectedProject: Project;
 
-  constructor(private http: HttpClient, private githubService: GithubService) {}
+  constructor(private http: HttpClient, private githubService: GithubService, private overlayService: OverlayService) {}
 
   /**
    * Getting README.md from a PUBLIC repository.
@@ -26,6 +27,8 @@ export class ProjectService {
       }),
       responseType: 'text' as 'json',
     };
+
+    this.overlayService.showOverlay();
 
     return this.http.get<string>(
       `${this.githubService.GITHUB_RAW_URL}/${this.githubService.USERNAME}/${reponame}/main/README.md`,

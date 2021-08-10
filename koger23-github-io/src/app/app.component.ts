@@ -8,6 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'koger23-github-io';
 
-  constructor() {
-  }
+  constructor() {}
 }

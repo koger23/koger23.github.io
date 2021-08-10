@@ -1,4 +1,3 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Pipe, PipeTransform } from '@angular/core';
 import { Utils } from '../helpers/utils';
 
@@ -9,12 +8,14 @@ export class ShortenContentPipe implements PipeTransform {
 
   transform(htmlContent: string, ...args: string[]): string {
     let shortenContent: string;
-    const pattern = new RegExp("\\<.*?\\>");
     
     htmlContent = Utils.replaceAll("&quot;", '"', htmlContent); // replace quotes
-    htmlContent = htmlContent.replace(pattern, ''); // remove HTML tags
 
-    shortenContent = `${htmlContent.slice(htmlContent.indexOf("<p>") + 3, 300)}...`;
+    shortenContent = `${htmlContent.slice(htmlContent.indexOf("<p>") + 3, htmlContent.length)}...`;
+
+    let maxLength = shortenContent.length > 300 ? 300 : shortenContent.length;
+    shortenContent = shortenContent.replace(/(<([^>]+)>)/ig , ''); // remove HTML tags
+    shortenContent = `${shortenContent.slice(0, maxLength)}...`;
 
     return shortenContent;
   }

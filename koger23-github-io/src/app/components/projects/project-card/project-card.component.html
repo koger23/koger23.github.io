@@ -1,8 +1,20 @@
-<div class="container">
+<div class="card">
   <h4>{{ project.name }}</h4>
   <hr />
   <div>
-    <p *ngIf="project.content && project.content.length > 0">{{ project.content | markdown | shortenContent }} <a routerLink="/projects/{{ project.name }}" (click)="onSelectProject()">Read more</a></p>
-    <p *ngIf="!project.content || project.content.length == 0">No content for this project, although it is added to display here. Please add a "README.md".</p>
+    <p *ngIf="project.content && project.content.length > 0">
+      {{ project.content | markdown | shortenContent }}
+      <a routerLink="/projects/{{ project.name }}" (click)="onSelectProject()"
+        >[Read more]</a
+      >
+    </p>
+    <p *ngIf="!project.content || project.content.length == 0">
+      No content for this project, although it is added to display here. Please
+      add a "README.md".
+    </p>
+  </div>
+  <hr />
+  <div id="tags">
+    <small>#Arduino #HTML</small>
   </div>
 </div>

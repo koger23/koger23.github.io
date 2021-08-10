@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { GithubService } from 'src/app/services/github.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { Utils } from 'src/app/helpers/utils';
+import { OverlayService } from 'src/app/services/overlay.service';
 
 @Component({
   selector: 'app-project',
@@ -17,7 +18,8 @@ export class ProjectComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private githubService: GithubService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private overlayService: OverlayService
   ) {}
   private reponame: string;
 
@@ -43,6 +45,9 @@ export class ProjectComponent implements OnInit {
             resp
           );
         }
+      },
+      complete: () => {
+        this.overlayService.hideOverlay();
       },
     });
   }

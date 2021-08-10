@@ -1,9 +1,17 @@
-<div>
-  <div *ngFor="let project of projects">
-      <app-project-card [project]='project'>{{ project }}</app-project-card>
+<div class="container">
+  <div class="d-flex flex-wrap">
+    <app-project-card
+      id="card"
+      *ngFor="let project of projects; let i = index"
+      [project]="project"
+      class="order-{{ i + 1 }}"
+      >{{ project }}</app-project-card
+    >
   </div>
-  <p *ngIf="projectNames.length == 0">
-    No available project to list. Please add to the config file, if you need
-    more help, please check "Help" section.
-  </p>
+  <div class="error-container" *ngIf="projectNames.length == 0">
+    <p>
+      No available project to list. Please add to the config file, if you need
+      more help, please check "Help" section.
+    </p>
+  </div>
 </div>

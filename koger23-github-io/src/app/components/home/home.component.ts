@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from 'src/app/services/github.service';
 import { Utils } from 'src/app/helpers/utils';
+import { OverlayService } from 'src/app/services/overlay.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,12 @@ import { Utils } from 'src/app/helpers/utils';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  content =
-    'Hi, \n\nthe site is under development, content can be missing or being ugly, or the site can be unusable at all.';
+  content: string;
 
-  constructor(private githubService: GithubService) {}
+  constructor(
+    private githubService: GithubService,
+    private overlayService: OverlayService
+  ) {}
 
   ngOnInit(): void {
     this.loadContent();
@@ -27,6 +30,9 @@ export class HomeComponent implements OnInit {
             resp
           );
         }
+      },
+      complete: () => {
+        this.overlayService.hideOverlay();
       },
     });
   }
