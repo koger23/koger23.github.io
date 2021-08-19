@@ -14,10 +14,14 @@ export class OverlayService {
   }
 
   public show(): void {
-    this.overlayComponent.show();
+    if (this.overlayComponent) {
+      this.overlayComponent.show();
+    }
   }
 
   public hide(): void {
-    this.overlayComponent.hide();
+    if (this.overlayComponent) {
+      this.overlayComponent.hide();
+    }
   }
 }

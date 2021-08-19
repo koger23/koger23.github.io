@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GithubService } from './services/github.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'koger23-github-io';
 
-  constructor() {}
+  constructor(private githubService: GithubService) {
+    this.githubService.getConfig().subscribe({
+      next: (resp) => {
+        this.githubService.readConfig(resp);
+      },
+    });
+  }
 }

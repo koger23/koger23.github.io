@@ -3,14 +3,17 @@ import { Injectable } from '@angular/core';
 import { OverlayService } from './overlay.service';
 import { ConfigIniParser } from 'config-ini-parser';
 import { ProjectDetails } from '../models/project-details.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GithubService {
   private _GITHUB_RAW_URL: string = 'https://raw.githubusercontent.com';
+  private devUserName: string = 'koger23';
+  private fullname: string;
+  hasFullName: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   parser: ConfigIniParser;
-  devUserName: string = 'koger23';
   projectNames: string[];
   postNames: string[];
 
@@ -23,6 +26,10 @@ export class GithubService {
       return this.devUserName;
     }
     return window.location.hostname.split('.')[0];
+  }
+
+  public get FULLNAME(): string {
+    return this.fullname;
   }
 
   constructor(private http: HttpClient, private overlay: OverlayService) {}
@@ -113,6 +120,14 @@ export class GithubService {
 
     this.projectNames = this.parser.get(sections[0], 'projects').split(',');
     this.postNames = this.parser.get(sections[0], 'posts').split(',');
+
+    if (this.parser.isHaveOption(sections[0], 'fullname')) {
+      this.fullname = this.parser.get(sections[0], 'fullname');
+      
+      if (this.fullname.length > 0) {
+        this.hasFullName.next(true);
+      }
+    }
 
     this.overlay.hide();
   }

@@ -8,11 +8,19 @@ import { GithubService } from 'src/app/services/github.service';
 })
 export class HeaderComponent implements OnInit {
   username: string;
+  fullname: string;
+  hasFullname: boolean = false;
 
   constructor(private githubService: GithubService) {}
 
   ngOnInit(): void {
     this.username = this.githubService.USERNAME;
+    this.githubService.hasFullName.subscribe({
+      next: () => {
+        this.fullname = this.githubService.FULLNAME;
+        this.hasFullname = true;
+      }
+    });
   }
 
 }
