@@ -11,8 +11,8 @@ export class GithubService {
   private _GITHUB_RAW_URL: string = 'https://raw.githubusercontent.com';
   parser: ConfigIniParser;
   devUserName: string = 'koger23';
-  projectNames: string[] = [];
-  postNames: string[] = [];
+  projectNames: string[];
+  postNames: string[];
 
   public get GITHUB_RAW_URL(): string {
     return this._GITHUB_RAW_URL;
@@ -137,7 +137,7 @@ export class GithubService {
       }
     }
     this.overlay.hide();
-    
+
     return details;
   }
 

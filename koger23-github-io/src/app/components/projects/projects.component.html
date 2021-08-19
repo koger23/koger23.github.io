@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="d-flex flex-wrap">
+  <div class="d-flex flex-wrap" *ngIf="projects">
     <app-project-card
       id="card"
       *ngFor="let project of projects; let i = index"
@@ -8,7 +8,7 @@
       >{{ project }}</app-project-card
     >
   </div>
-  <div class="error-container" *ngIf="projectNames.length == 0">
+  <div class="error-container" *ngIf="!projects">
     <p>
       No available project to list. Please add to the config file, if you need
       more help, please check "Help" section.

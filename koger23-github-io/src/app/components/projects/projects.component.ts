@@ -11,29 +11,36 @@ import { OverlayService } from 'src/app/services/overlay.service';
   styleUrls: ['./projects.component.css'],
 })
 export class ProjectsComponent implements OnInit {
-  public projects: Project[] = [];
-  public projectNames: string[] = [];
+  public projects: Project[];
 
   constructor(
     private projectService: ProjectService,
     private githubService: GithubService,
-    private overlayService: OverlayService
+    private overlay: OverlayService
   ) {}
 
   ngOnInit(): void {
-    this.projectNames = this.githubService.getProjectNames();
-    this.createProjects();
+    if (!this.projects) {
+      this.githubService.getConfig().subscribe({
+        next: (resp) => {
+          this.githubService.readConfig(resp);
+
+          this.createProjects();
+        },
+      });
+    }
   }
 
   private createProjects() {
-    if (this.projectNames.length > 0) {
-      this.projectNames.forEach((projectName) => {
+    if (this.githubService.projectNames && this.githubService.projectNames.length > 0) {
+      this.githubService.projectNames.forEach((projectName) => {
         let newProject = new Project();
         newProject.name = projectName;
 
         this.projectService.getProjectReadme(projectName).subscribe({
           next: (resp) => {
-            this.overlayService.show();
+            this.overlay.show();
+
             if (resp) {
               newProject.content = Utils.replaceAll(
                 '(./',
@@ -42,12 +49,16 @@ export class ProjectsComponent implements OnInit {
               );
             }
 
-            newProject.details = this.githubService.getProjectDetails(projectName);
+            newProject.details =
+              this.githubService.getProjectDetails(projectName);
           },
           complete: () => {
-            this.overlayService.hide();
+            this.overlay.hide();
           },
         });
+        if (!this.projects) {
+          this.projects = [];
+        }
         this.projects.push(newProject);
       });
     }
