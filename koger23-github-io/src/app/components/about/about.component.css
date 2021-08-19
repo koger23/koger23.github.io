@@ -30,6 +30,10 @@ fa-icon {
   margin-bottom: 5px;
 }
 
+#contact > a > fa-icon {
+  padding-right: 25px;
+}
+
 @media only screen and (min-width: 601px) {
   .container {
     max-width: 80%;
@@ -42,16 +46,20 @@ fa-icon {
     background-color: white;
   }
 
-  #aboutme,
-  #certs {
+  #aboutme {
     max-width: 80%;
     margin-top: 20px;
-    background-color: rgb(247, 230, 230);
+    background-color: white;
     padding: 0px 10px 10px;
   }
-}
 
-
-#contact > a > fa-icon {
-  padding-right: 25px;
+  #certs {
+    max-width: fit-content;
+    min-width: 250px;
+    margin: 0px 0px 50px;
+    background-color: white;
+    padding: 0px 10px 10px;
+    max-width: 80%;
+    padding: 30px;
+  }
 }

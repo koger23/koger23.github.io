@@ -2,32 +2,36 @@
   <div class="container">
     <div class="row">
       <img
-        src="https://raw.githubusercontent.com/koger23/koger23/main/img/avatar.jpg"
+        src="{{ config.avatarUrl }}"
         class="rounded mb-3"
         style="width: 150px; height: 150px"
         alt="avatar.jpg"
       />
       <div class="col-9">
         <div id="name">
-          <h4 class="mb-0"><strong>Gergely Kocsis</strong></h4>
+          <h4 class="mb-0">
+            <strong>{{ config.fullname }}</strong>
+          </h4>
           <p class="text-muted">
-            Developer & Microsoft Dynamics 365 consultant
+            {{ config.profession }}
           </p>
         </div>
         <div id="contact">
-          <a href="mailto:koger23@gmail.com"><fa-icon
-            [icon]="faEnvelope"
-            size="2x"
-            [styles]="{ color: 'grey' }"
-          ></fa-icon></a>
-          <a href="http://bit.ly/koger23LinkedIn"
+          <a href="mailto:{{ config.email }}"
+            ><fa-icon
+              [icon]="faEnvelope"
+              size="2x"
+              [styles]="{ color: 'grey' }"
+            ></fa-icon
+          ></a>
+          <a href="{{ config.linkedInUrl }}"
             ><fa-icon
               [icon]="faLinkedin"
               size="2x"
               [styles]="{ color: 'grey' }"
             ></fa-icon
           ></a>
-          <a href="http://bit.ly/gith23"
+          <a href="{{ config.githubUrl }}"
             ><fa-icon
               [icon]="faGithub"
               size="2x"
@@ -40,44 +44,52 @@
           size="xl"
           [styles]="{ color: 'grey' }"
         ></fa-icon
-        ><span class="text-muted">Mechanical Engineer (BSc)</span>
+        ><span class="text-muted">{{ config.degrees }}</span>
         <br />
         <fa-icon
           [icon]="faGlobe"
           size="xl"
           [styles]="{ color: 'grey' }"
         ></fa-icon
-        ><span class="text-muted"
-          >English (B2), German (B2), Hungarian (native)</span
-        >
+        ><span class="text-muted">{{ config.languages }}</span>
         <br />
         <fa-icon
           [icon]="faMapMarkedAlt"
           size="xl"
           [styles]="{ color: 'grey' }"
         ></fa-icon
-        ><span class="text-muted">Hungary</span>
+        ><span class="text-muted">{{ config.location }}</span>
         <br />
         <fa-icon
           [icon]="faLayerGroup"
           size="xl"
           [styles]="{ color: 'grey' }"
         ></fa-icon
-        ><span class="text-muted"
-          >C#, .Net Core, TypeScript, Angular, JavaScript, Python, (Java,
-          Spring)</span
-        >
+        ><span class="text-muted">{{ config.stack }}</span>
+        <br />
+        <fa-icon
+          [icon]="faTools"
+          size="xl"
+          [styles]="{ color: 'grey' }"
+        ></fa-icon
+        ><span class="text-muted">{{ config.tools }}</span>
       </div>
     </div>
-    <div>
-      <div id="certs" *ngIf="contentAboutMe.length > 0">
+    <div class="row">
+      <div id="certs">
         <h3>Certifications, bages</h3>
         <hr />
-        <p>bages here</p>
+        <div class="row">
+          <img
+            *ngFor="let cert of config.bages"
+            src="{{ cert }}"
+            style="width: 150px"
+          />
+        </div>
       </div>
     </div>
     <div>
-      <div id="aboutme" *ngIf="contentAboutMe.length > 0">
+      <div id="aboutme" *ngIf="contentAboutMe && contentAboutMe.length > 0">
         <h3>About Me</h3>
         <hr />
         <p [innerHTML]="contentAboutMe | markdown"></p>

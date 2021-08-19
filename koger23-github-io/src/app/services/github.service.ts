@@ -4,6 +4,9 @@ import { OverlayService } from './overlay.service';
 import { ConfigIniParser } from 'config-ini-parser';
 import { ProjectDetails } from '../models/project-details.model';
 import { BehaviorSubject } from 'rxjs';
+import { Config } from '../models/config.model';
+
+const DEFAULT_SECTION = 'DEFAULT';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +15,8 @@ export class GithubService {
   private _GITHUB_RAW_URL: string = 'https://raw.githubusercontent.com';
   private devUserName: string = 'koger23';
   private fullname: string;
+  config: BehaviorSubject<Config> = new BehaviorSubject<Config>(null);
+  isParserLoaded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   hasFullName: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   parser: ConfigIniParser;
   projectNames: string[];
@@ -115,21 +120,92 @@ export class GithubService {
   public readConfig(configContent: string): void {
     this.overlay.show();
     this.parser = new ConfigIniParser();
+    this.isParserLoaded.next(true);
     this.parser.parse(configContent);
-    let sections = this.parser.sections();
+    let config = new Config();
+    
+    config.avatarUrl = `${this.GITHUB_RAW_URL}/${this.USERNAME}/${this.USERNAME}/main/img/avatar.jpg`
 
-    this.projectNames = this.parser.get(sections[0], 'projects').split(',');
-    this.postNames = this.parser.get(sections[0], 'posts').split(',');
+    if (this.parser.isHaveSection(DEFAULT_SECTION)) {
+      if (this.parser.isHaveOption(DEFAULT_SECTION, 'projects')) {
+        this.projectNames = this.parser
+          .get(DEFAULT_SECTION, 'projects')
+          .split(',');
+      }
 
-    if (this.parser.isHaveOption(sections[0], 'fullname')) {
-      this.fullname = this.parser.get(sections[0], 'fullname');
-      
-      if (this.fullname.length > 0) {
-        this.hasFullName.next(true);
+      if (this.parser.isHaveOption(DEFAULT_SECTION, 'fullname')) {
+        this.fullname = this.parser.get(DEFAULT_SECTION, 'fullname');
+
+        config.fullname = this.parser.get(DEFAULT_SECTION, 'fullname');
+
+        if (this.fullname.length > 0) {
+          this.hasFullName.next(true);
+        }
+      }
+
+      if (this.parser.isHaveOption(DEFAULT_SECTION, 'posts')) {
+        this.postNames = this.parser.get(DEFAULT_SECTION, 'posts').split(',');
+      }
+
+      if (this.parser.isHaveOption(DEFAULT_SECTION, 'email')) {
+        config.email = this.parser.get(DEFAULT_SECTION, 'email');
+      }
+
+      if (this.parser.isHaveOption(DEFAULT_SECTION, 'degrees')) {
+        config.degrees = this.parser.get(DEFAULT_SECTION, 'degrees');
+      }
+
+      if (this.parser.isHaveOption(DEFAULT_SECTION, 'languages')) {
+        config.languages = this.parser.get(DEFAULT_SECTION, 'languages');
+
+        if (this.parser.isHaveOption(DEFAULT_SECTION, 'location')) {
+          config.location = this.parser.get(DEFAULT_SECTION, 'location');
+        }
+
+        if (this.parser.isHaveOption(DEFAULT_SECTION, 'stack')) {
+          config.stack = this.parser.get(DEFAULT_SECTION, 'stack');
+        }
+
+        if (this.parser.isHaveOption(DEFAULT_SECTION, 'tools')) {
+          config.tools = this.parser.get(DEFAULT_SECTION, 'tools');
+        }
+
+        if (this.parser.isHaveOption(DEFAULT_SECTION, 'profession')) {
+          config.profession = this.parser.get(DEFAULT_SECTION, 'profession');
+        }
+
+        if (this.parser.isHaveOption(DEFAULT_SECTION, 'linkedinurl')) {
+          config.linkedInUrl = this.parser.get(DEFAULT_SECTION, 'linkedinurl');
+        }
+
+        if (this.parser.isHaveOption(DEFAULT_SECTION, 'githuburl')) {
+          config.githubUrl = this.parser.get(DEFAULT_SECTION, 'githuburl');
+        }
+
+        if (this.parser.isHaveOption(DEFAULT_SECTION, 'bages')) {
+          this.parser
+            .get(DEFAULT_SECTION, 'bages')
+            .split(',')
+            .forEach((href) => {
+              config.bages.push(
+                `${this.GITHUB_RAW_URL}/${this.USERNAME}/${this.USERNAME}/main/img/bages/${href}`
+              );
+            });
+        }
       }
     }
 
+    this.config.next(config);
     this.overlay.hide();
+  }
+
+  public getCertifications(): string[] {
+    if (
+      this.isParserLoaded.value &&
+      this.parser.isHaveOption('DEFAULT', 'bages')
+    ) {
+      return this.parser.get('DEFAULT', 'bages').split(',');
+    }
   }
 
   public getProjectDetails(projectName: string): ProjectDetails {

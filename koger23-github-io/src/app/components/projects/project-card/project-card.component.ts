@@ -20,6 +20,5 @@ export class ProjectCardComponent implements OnInit {
 
   public onSelectProject() {
     this.projectService.selectedProject = this.project;
-    console.log(this.projectService.selectedProject);
   }
 }

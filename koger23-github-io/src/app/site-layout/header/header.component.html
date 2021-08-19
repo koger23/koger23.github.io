@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <a class="navbar-brand" href="#" *ngIf="!hasFullname || fullname.length == 0"
+  <a class="navbar-brand" href="#" *ngIf="!hasFullname || !fullname || fullname.length == 0"
     >{{ username }}'s Page</a
   >
-  <a class="navbar-brand" href="#" *ngIf="hasFullname && fullname.length > 0">{{
+  <a class="navbar-brand" href="#" *ngIf="hasFullname && fullname && fullname.length > 0">{{
     fullname
   }}</a>
   <button
