@@ -1,11 +1,95 @@
-<div class="container" *ngIf="contentAboutMe.length > 0">
-  <img height="100px" src="https://raw.githubusercontent.com/koger23/csipesz-jelzo/main/img/FS1000A-433mHz-Receiver.jpg" alt="FS1000A-433mHz-Receiver">
-  <h3>About Me</h3>
-  <hr>
-  <p [innerHTML]="contentAboutMe | markdown"></p>
-</div>
-<div class="container" *ngIf="contentAboutSite && contentAboutSite.length > 0">
-  <h3>About The Site</h3>
-  <hr>
-  <p [innerHTML]="contentAboutSite | markdown"></p>
+<div>
+  <div class="container">
+    <div class="row">
+      <img
+        src="https://raw.githubusercontent.com/koger23/koger23/main/img/avatar.jpg"
+        class="rounded mb-3"
+        style="width: 150px; height: 150px"
+        alt="avatar.jpg"
+      />
+      <div class="col-9">
+        <div id="name">
+          <h4 class="mb-0"><strong>Gergely Kocsis</strong></h4>
+          <p class="text-muted">
+            Developer & Microsoft Dynamics 365 consultant
+          </p>
+        </div>
+        <div id="contact">
+          <a href="mailto:koger23@gmail.com"><fa-icon
+            [icon]="faEnvelope"
+            size="2x"
+            [styles]="{ color: 'grey' }"
+          ></fa-icon></a>
+          <a href="http://bit.ly/koger23LinkedIn"
+            ><fa-icon
+              [icon]="faLinkedin"
+              size="2x"
+              [styles]="{ color: 'grey' }"
+            ></fa-icon
+          ></a>
+          <a href="http://bit.ly/gith23"
+            ><fa-icon
+              [icon]="faGithub"
+              size="2x"
+              [styles]="{ color: 'grey' }"
+            ></fa-icon
+          ></a>
+        </div>
+        <fa-icon
+          [icon]="faGraduationCap"
+          size="xl"
+          [styles]="{ color: 'grey' }"
+        ></fa-icon
+        ><span class="text-muted">Mechanical Engineer (BSc)</span>
+        <br />
+        <fa-icon
+          [icon]="faGlobe"
+          size="xl"
+          [styles]="{ color: 'grey' }"
+        ></fa-icon
+        ><span class="text-muted"
+          >English (B2), German (B2), Hungarian (native)</span
+        >
+        <br />
+        <fa-icon
+          [icon]="faMapMarkedAlt"
+          size="xl"
+          [styles]="{ color: 'grey' }"
+        ></fa-icon
+        ><span class="text-muted">Hungary</span>
+        <br />
+        <fa-icon
+          [icon]="faLayerGroup"
+          size="xl"
+          [styles]="{ color: 'grey' }"
+        ></fa-icon
+        ><span class="text-muted"
+          >C#, .Net Core, TypeScript, Angular, JavaScript, Python, (Java,
+          Spring)</span
+        >
+      </div>
+    </div>
+    <div>
+      <div id="certs" *ngIf="contentAboutMe.length > 0">
+        <h3>Certifications, bages</h3>
+        <hr />
+        <p>bages here</p>
+      </div>
+    </div>
+    <div>
+      <div id="aboutme" *ngIf="contentAboutMe.length > 0">
+        <h3>About Me</h3>
+        <hr />
+        <p [innerHTML]="contentAboutMe | markdown"></p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="container"
+    *ngIf="contentAboutSite && contentAboutSite.length > 0"
+  >
+    <h3>About The Site</h3>
+    <hr />
+    <p [innerHTML]="contentAboutSite | markdown"></p>
+  </div>
 </div>

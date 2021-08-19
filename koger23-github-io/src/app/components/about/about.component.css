@@ -10,6 +10,26 @@ p {
   text-align: justify;
 }
 
+#aboutme,
+#certs {
+  max-width: fit-content;
+  min-width: 250px;
+  margin-top: 20px;
+  background-color: white;
+}
+
+hr {
+  margin-top: 0px;
+}
+
+fa-icon {
+  padding-right: 5px;
+}
+
+#name > p {
+  margin-bottom: 5px;
+}
+
 @media only screen and (min-width: 601px) {
   .container {
     max-width: 80%;
@@ -21,8 +41,17 @@ p {
     z-index: 0;
     background-color: white;
   }
+
+  #aboutme,
+  #certs {
+    max-width: 80%;
+    margin-top: 20px;
+    background-color: rgb(247, 230, 230);
+    padding: 0px 10px 10px;
+  }
 }
 
-hr {
-  margin-top: 0px;
+
+#contact > a > fa-icon {
+  padding-right: 25px;
 }
