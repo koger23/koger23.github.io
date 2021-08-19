@@ -21,12 +21,8 @@ export class ProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.githubService.getProjectList().subscribe({
-      next: (resp) => {
-        this.projectNames = resp.replace(' ', '').replace('\n', '').split(',');
-        this.createProjects();
-      },
-    });
+    this.projectNames = this.githubService.getProjectNames();
+    this.createProjects();
   }
 
   private createProjects() {
@@ -37,7 +33,7 @@ export class ProjectsComponent implements OnInit {
 
         this.projectService.getProjectReadme(projectName).subscribe({
           next: (resp) => {
-            this.overlayService.showOverlay();
+            this.overlayService.show();
             if (resp) {
               newProject.content = Utils.replaceAll(
                 '(./',
@@ -45,9 +41,11 @@ export class ProjectsComponent implements OnInit {
                 resp
               );
             }
+
+            newProject.details = this.githubService.getProjectDetails(projectName);
           },
           complete: () => {
-            this.overlayService.hideOverlay();
+            this.overlayService.hide();
           },
         });
         this.projects.push(newProject);

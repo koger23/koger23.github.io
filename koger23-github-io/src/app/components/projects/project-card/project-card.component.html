@@ -1,6 +1,21 @@
 <div class="card">
-  <h4>{{ project.name }}</h4>
+  <h4>
+    {{
+      project.details && project.details.title
+        ? project.details.title
+        : project.name
+    }}
+  </h4>
   <hr />
+  <small id="publishedOn" *ngIf="project.details && project.details.publishedOn"
+    >Published on:
+    {{
+      project.details && project.details.publishedOn
+        ? project.details.publishedOn
+        : ""
+    }}</small
+  >
+  <hr *ngIf="project.details && project.details.publishedOn" />
   <div>
     <p *ngIf="project.content && project.content.length > 0">
       {{ project.content | markdown | shortenContent }}
@@ -15,6 +30,8 @@
   </div>
   <hr />
   <div id="tags">
-    <small>#Arduino #HTML</small>
+    <small *ngIf="project.details && project.details.tags"># {{
+      project.details.tags
+    }}</small>
   </div>
 </div>

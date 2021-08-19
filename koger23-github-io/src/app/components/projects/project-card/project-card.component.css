@@ -26,3 +26,7 @@ hr {
 p {
   text-align: justify;
 }
+
+#tags, #publishedOn {
+  font-style: italic;
+}

@@ -12,7 +12,7 @@ export class ProjectService {
   public projectNames: string[] = [];
   public selectedProject: Project;
 
-  constructor(private http: HttpClient, private githubService: GithubService, private overlayService: OverlayService) {}
+  constructor(private http: HttpClient, private githubService: GithubService, private overlay: OverlayService) {}
 
   /**
    * Getting README.md from a PUBLIC repository.
@@ -28,7 +28,7 @@ export class ProjectService {
       responseType: 'text' as 'json',
     };
 
-    this.overlayService.showOverlay();
+    this.overlay.show();
 
     return this.http.get<string>(
       `${this.githubService.GITHUB_RAW_URL}/${this.githubService.USERNAME}/${reponame}/main/README.md`,

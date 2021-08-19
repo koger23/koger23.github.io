@@ -15,11 +15,12 @@ export class OverlayComponent implements OnInit {
   ngOnInit(): void {
     this.overlayService.setComponent(this);
   }
-  showOverlay(): void {
+
+  show(): void {
     this.spinner.show();
   }
 
-  hideOverlay(): void {
+  hide(): void {
     this.spinner.hide();
   }
 

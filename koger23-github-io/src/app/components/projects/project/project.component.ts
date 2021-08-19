@@ -47,7 +47,7 @@ export class ProjectComponent implements OnInit {
         }
       },
       complete: () => {
-        this.overlayService.hideOverlay();
+        this.overlayService.hide();
       },
     });
   }

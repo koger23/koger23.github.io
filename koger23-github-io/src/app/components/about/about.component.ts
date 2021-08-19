@@ -38,7 +38,7 @@ export class AboutComponent implements OnInit {
         }
       },
       complete: () => {
-        this.overlayService.hideOverlay();
+        this.overlayService.hide();
       },
     });
   }

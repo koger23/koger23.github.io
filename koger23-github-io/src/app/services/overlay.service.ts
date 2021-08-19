@@ -13,11 +13,11 @@ export class OverlayService {
     this.overlayComponent = overlayComponent;
   }
 
-  public showOverlay(): void {
-    this.overlayComponent.showOverlay();
+  public show(): void {
+    this.overlayComponent.show();
   }
 
-  public hideOverlay(): void {
-    this.overlayComponent.hideOverlay();
+  public hide(): void {
+    this.overlayComponent.hide();
   }
 }
