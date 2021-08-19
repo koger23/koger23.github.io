@@ -8,14 +8,19 @@
   </h4>
   <hr />
   <small id="publishedOn" *ngIf="project.details && project.details.publishedOn"
-    >Published on:
+    ><fa-icon
+      [icon]="faCalendarAlt"
+      size="xl"
+      [styles]="{ color: 'grey' }"
+    ></fa-icon>
+    Published on:
     {{
       project.details && project.details.publishedOn
         ? project.details.publishedOn
         : ""
     }}</small
   >
-  <hr *ngIf="project.details && project.details.publishedOn" />
+  <hr id="lowerline" *ngIf="project.details && project.details.publishedOn" />
   <div>
     <p *ngIf="project.content && project.content.length > 0">
       {{ project.content | markdown | shortenContent }}
@@ -30,8 +35,13 @@
   </div>
   <hr />
   <div id="tags">
-    <small *ngIf="project.details && project.details.tags"># {{
-      project.details.tags
-    }}</small>
+    <small *ngIf="project.details && project.details.tags"
+      ><fa-icon
+        [icon]="faHashtag"
+        size="xl"
+        [styles]="{ color: 'grey' }"
+      ></fa-icon>
+      {{ project.details.tags }}</small
+    >
   </div>
 </div>

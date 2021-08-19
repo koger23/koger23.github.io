@@ -16,6 +16,7 @@ import { ShortenContentPipe } from './pipes/shorten-content.pipe';
 import { OverlayComponent } from './overlay/overlay.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

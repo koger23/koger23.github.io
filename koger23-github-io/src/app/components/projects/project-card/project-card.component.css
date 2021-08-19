@@ -30,3 +30,7 @@ p {
 #tags, #publishedOn {
   font-style: italic;
 }
+
+#lowerline {
+  margin-bottom: 10px;
+}

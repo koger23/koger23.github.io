@@ -1,3 +1,31 @@
 <div class="container">
-  <p [innerHTML]="content | markdown"></p>
+  <h1>
+    {{
+      project.details && project.details.title
+        ? project.details.title
+        : project.name
+    }}
+  </h1>
+  <div>
+    <hr id="upperline" />
+    <small
+      id="publishedOn"
+      *ngIf="project.details && project.details.publishedOn"
+      ><fa-icon
+        [icon]="faCalendarAlt"
+        size="xl"
+        [styles]="{ color: 'grey' }"
+      ></fa-icon>
+      Published on:
+      {{
+        project.details && project.details.publishedOn
+          ? project.details.publishedOn
+          : ""
+      }}</small
+    >
+    <hr id="lowerline" />
+  </div>
+  <div>
+    <p [innerHTML]="content | markdown"></p>
+  </div>
 </div>

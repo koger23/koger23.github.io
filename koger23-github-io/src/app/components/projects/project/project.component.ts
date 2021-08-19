@@ -5,6 +5,8 @@ import { GithubService } from 'src/app/services/github.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { Utils } from 'src/app/helpers/utils';
 import { OverlayService } from 'src/app/services/overlay.service';
+import { Project } from 'src/app/models/project.model';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-project',
@@ -14,6 +16,8 @@ import { OverlayService } from 'src/app/services/overlay.service';
 export class ProjectComponent implements OnInit {
   content: string;
   routeSub: Subscription;
+  project: Project;
+  faCalendarAlt = faCalendarAlt;
 
   constructor(
     private projectService: ProjectService,
@@ -32,6 +36,8 @@ export class ProjectComponent implements OnInit {
         this.getProjectReadme();
       });
     }
+
+    this.project = this.projectService.selectedProject;
   }
 
   private getProjectReadme() {

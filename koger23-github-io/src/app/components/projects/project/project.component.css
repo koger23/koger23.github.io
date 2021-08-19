@@ -19,3 +19,17 @@
       background-color: white;
     }
 }
+
+#tags, #publishedOn {
+  font-style: italic;
+}
+
+#upperline {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#lowerline {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
