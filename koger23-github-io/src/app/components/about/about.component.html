@@ -9,14 +9,16 @@
           alt="avatar.jpg"
         />
         <div class="">
-          <div id="name">
-            <h4 class="mb-0">
-              <strong>{{ config.fullname }}</strong>
-            </h4>
-            <p class="text-muted">
-              {{ config.profession }}
-            </p>
-            <div id="contact">
+          <div class="row mb-4 flex justify-content-center text-center">
+            <div id="name" class="col-9">
+              <h4 class="mb-0">
+                <strong>{{ config.fullname }}</strong>
+              </h4>
+              <p class="text-muted">
+                {{ config.profession }}
+              </p>
+            </div>
+            <div id="contact" class="col-9 row justify-content-center">
               <a href="mailto:{{ config.email }}"
                 ><fa-icon
                   [icon]="faEnvelope"
