@@ -1,91 +1,91 @@
 <div>
   <div class="container">
-    <div class="row">
-      <img
-        src="{{ config.avatarUrl }}"
-        class="rounded mb-3"
-        style="width: 150px; height: 150px"
-        alt="avatar.jpg"
-      />
-      <div class="col-9">
-        <div id="name">
-          <h4 class="mb-0">
-            <strong>{{ config.fullname }}</strong>
-          </h4>
-          <p class="text-muted">
-            {{ config.profession }}
-          </p>
+    <div class="d-flex flex-wrap">
+      <div class="d-flex flex-wrap">
+        <img
+          src="{{ config.avatarUrl }}"
+          class="rounded mb-3"
+          style="width: 150px; height: 150px"
+          alt="avatar.jpg"
+        />
+        <div class="">
+          <div id="name">
+            <h4 class="mb-0">
+              <strong>{{ config.fullname }}</strong>
+            </h4>
+            <p class="text-muted">
+              {{ config.profession }}
+            </p>
+            <div id="contact">
+              <a href="mailto:{{ config.email }}"
+                ><fa-icon
+                  [icon]="faEnvelope"
+                  size="2x"
+                  [styles]="{ color: 'grey' }"
+                ></fa-icon
+              ></a>
+              <a href="{{ config.linkedInUrl }}"
+                ><fa-icon
+                  [icon]="faLinkedin"
+                  size="2x"
+                  [styles]="{ color: 'grey' }"
+                ></fa-icon
+              ></a>
+              <a href="{{ config.githubUrl }}"
+                ><fa-icon
+                  [icon]="faGithub"
+                  size="2x"
+                  [styles]="{ color: 'grey' }"
+                ></fa-icon
+              ></a>
+            </div>
+          </div>
+          <fa-icon
+            [icon]="faGraduationCap"
+            size="xl"
+            [styles]="{ color: 'grey' }"
+          ></fa-icon
+          ><span class="text-muted">{{ config.degrees }}</span>
+          <br />
+          <fa-icon
+            [icon]="faGlobe"
+            size="xl"
+            [styles]="{ color: 'grey' }"
+          ></fa-icon
+          ><span class="text-muted">{{ config.languages }}</span>
+          <br />
+          <fa-icon
+            [icon]="faMapMarkedAlt"
+            size="xl"
+            [styles]="{ color: 'grey' }"
+          ></fa-icon
+          ><span class="text-muted">{{ config.location }}</span>
+          <br />
+          <fa-icon
+            [icon]="faLayerGroup"
+            size="xl"
+            [styles]="{ color: 'grey' }"
+          ></fa-icon
+          ><span class="text-muted">{{ config.stack }}</span>
+          <br />
+          <fa-icon
+            [icon]="faTools"
+            size="xl"
+            [styles]="{ color: 'grey' }"
+          ></fa-icon
+          ><span class="text-muted">{{ config.tools }}</span>
         </div>
-        <div id="contact">
-          <a href="mailto:{{ config.email }}"
-            ><fa-icon
-              [icon]="faEnvelope"
-              size="2x"
-              [styles]="{ color: 'grey' }"
-            ></fa-icon
-          ></a>
-          <a href="{{ config.linkedInUrl }}"
-            ><fa-icon
-              [icon]="faLinkedin"
-              size="2x"
-              [styles]="{ color: 'grey' }"
-            ></fa-icon
-          ></a>
-          <a href="{{ config.githubUrl }}"
-            ><fa-icon
-              [icon]="faGithub"
-              size="2x"
-              [styles]="{ color: 'grey' }"
-            ></fa-icon
-          ></a>
-        </div>
-        <fa-icon
-          [icon]="faGraduationCap"
-          size="xl"
-          [styles]="{ color: 'grey' }"
-        ></fa-icon
-        ><span class="text-muted">{{ config.degrees }}</span>
-        <br />
-        <fa-icon
-          [icon]="faGlobe"
-          size="xl"
-          [styles]="{ color: 'grey' }"
-        ></fa-icon
-        ><span class="text-muted">{{ config.languages }}</span>
-        <br />
-        <fa-icon
-          [icon]="faMapMarkedAlt"
-          size="xl"
-          [styles]="{ color: 'grey' }"
-        ></fa-icon
-        ><span class="text-muted">{{ config.location }}</span>
-        <br />
-        <fa-icon
-          [icon]="faLayerGroup"
-          size="xl"
-          [styles]="{ color: 'grey' }"
-        ></fa-icon
-        ><span class="text-muted">{{ config.stack }}</span>
-        <br />
-        <fa-icon
-          [icon]="faTools"
-          size="xl"
-          [styles]="{ color: 'grey' }"
-        ></fa-icon
-        ><span class="text-muted">{{ config.tools }}</span>
       </div>
     </div>
-    <div class="row">
-      <div id="certs">
-        <h3>Certifications, bages</h3>
-        <hr />
-        <div class="row">
-          <img
-            *ngFor="let cert of config.bages"
-            src="{{ cert }}"
-            style="width: 150px"
-          />
-        </div>
+    <div id="certs">
+      <h3>Certifications, bages</h3>
+      <hr />
+      <div class="d-flex flex-wrap">
+        <img
+          *ngFor="let cert of config.bages"
+          src="{{ cert }}"
+          style="width: 150px"
+        />
       </div>
     </div>
     <div>
@@ -98,7 +98,7 @@
   </div>
   <div
     class="container"
-    *ngIf="contentAboutSite && contentAboutSite.length > 0"
+    *ngIf="contentAboutSite && contentAboutSite.length > 10"
   >
     <h3>About The Site</h3>
     <hr />

@@ -34,6 +34,13 @@ fa-icon {
   padding-right: 25px;
 }
 
+@media only screen and (max-width: 600px) {
+  #name {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 @media only screen and (min-width: 601px) {
   .container {
     max-width: 80%;
@@ -47,7 +54,7 @@ fa-icon {
   }
 
   #aboutme {
-    max-width: 80%;
+    max-width: fit-content;
     margin-top: 20px;
     background-color: white;
     padding: 0px 10px 10px;
@@ -55,11 +62,8 @@ fa-icon {
 
   #certs {
     max-width: fit-content;
-    min-width: 250px;
-    margin: 0px 0px 50px;
+    margin-top: 20px;
     background-color: white;
     padding: 0px 10px 10px;
-    max-width: 80%;
-    padding: 30px;
   }
 }
