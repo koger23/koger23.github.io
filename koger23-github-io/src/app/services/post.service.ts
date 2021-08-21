@@ -8,17 +8,17 @@ import { OverlayService } from './overlay.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ProjectService {
-  public selectedProject: Project;
+export class PostService {
+  public selectedPost: Project;
 
   constructor(private http: HttpClient, private githubService: GithubService, private overlay: OverlayService) {}
 
   /**
-   * Getting README.md from a PUBLIC repository.
+   * Getting markdown of post from the repository.
    * @param reponame name of the public repository
-   * @returns content of README.md as text
+   * @returns content of [post name].md as text
    */
-  public getProjectReadme(reponame: string): Observable<string> {
+  public getPostContent(postName: string): Observable<string> {
     const HTTP_OPTIONS = {
       headers: new HttpHeaders({
         Accept: 'text/html',
@@ -30,7 +30,7 @@ export class ProjectService {
     this.overlay.show();
 
     return this.http.get<string>(
-      `${this.githubService.GITHUB_RAW_URL}/${this.githubService.USERNAME}/${reponame}/main/README.md`,
+      `${this.githubService.GITHUB_RAW_URL}/${this.githubService.USERNAME}/${this.githubService.USERNAME}/main/posts/${postName}.md`,
       HTTP_OPTIONS
     );
   }

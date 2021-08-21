@@ -1,0 +1,47 @@
+<div class="container">
+    <h4>
+      {{
+        post.details && post.details.title
+          ? post.details.title
+          : post.name
+      }}
+    </h4>
+    <hr />
+    <small id="publishedOn" *ngIf="post.details && post.details.publishedOn"
+      ><fa-icon
+        [icon]="faCalendarAlt"
+        size="xl"
+        [styles]="{ color: 'grey' }"
+      ></fa-icon>
+      {{
+        post.details && post.details.publishedOn
+          ? post.details.publishedOn
+          : ""
+      }}</small
+    >
+    <hr id="lowerline" *ngIf="post.details && post.details.publishedOn" />
+    <div>
+      <p *ngIf="post.content && post.content.length > 0">
+        {{ post.content | markdown | shortenContent }}
+        <a (click)="onSelectProject()"
+          >[Read more]</a
+        >
+      </p>
+      <p *ngIf="!post.content || post.content.length == 0">
+        No content for this post, although it is added to display here. Please
+        add a "README.md".
+      </p>
+    </div>
+    <hr />
+    <div id="tags">
+      <small *ngIf="post.details && post.details.tags"
+        ><fa-icon
+          [icon]="faHashtag"
+          size="xl"
+          [styles]="{ color: 'grey' }"
+        ></fa-icon>
+        {{ post.details.tags }}</small
+      >
+    </div>
+  </div>
+  

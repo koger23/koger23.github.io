@@ -17,6 +17,9 @@ import { OverlayComponent } from './overlay/overlay.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PostsComponent } from './components/posts/posts.component';
+import { PostComponent } from './components/posts/post/post.component';
+import { PostsListItemComponent } from './components/posts/posts-list-item/posts-list-item.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProjectCardComponent,
     ShortenContentPipe,
     OverlayComponent,
+    PostsComponent,
+    PostComponent,
+    PostsListItemComponent,
   ],
   imports: [
     BrowserModule,

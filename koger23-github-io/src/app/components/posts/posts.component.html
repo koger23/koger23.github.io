@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="d-flex flex-wrap" *ngIf="posts">
+    <app-posts-list-item
+      id="card"
+      *ngFor="let post of posts; let i = index"
+      [post]="post"
+      class="order-{{ i + 1 }}"
+      >}</app-posts-list-item
+    >
+  </div>
+  <div class="error-container" *ngIf="!posts">
+    <p>
+      No available post to list. Please add to the config file, if you need more
+      help, please check "Help" section.
+    </p>
+  </div>
+</div>

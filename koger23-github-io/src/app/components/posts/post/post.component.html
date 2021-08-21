@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>
+      {{
+        post.details && post.details.title
+          ? post.details.title
+          : post.name
+      }}
+    </h1>
+    <div>
+      <hr id="upperline" />
+      <small
+        id="publishedOn"
+        *ngIf="post.details && post.details.publishedOn"
+        ><fa-icon
+          [icon]="faCalendarAlt"
+          size="xl"
+          [styles]="{ color: 'grey' }"
+        ></fa-icon>
+        {{
+            post.details && post.details.publishedOn
+            ? post.details.publishedOn
+            : ""
+        }}</small
+      >
+      <hr id="lowerline" />
+    </div>
+    <div>
+      <p [innerHTML]="content | markdown"></p>
+    </div>
+  </div>
+  
