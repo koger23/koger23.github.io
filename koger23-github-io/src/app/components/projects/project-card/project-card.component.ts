@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faCalendarAlt, faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/services/project.service';
@@ -13,12 +14,14 @@ export class ProjectCardComponent implements OnInit {
   faCalendarAlt = faCalendarAlt;
   faHashtag = faHashtag;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   public onSelectProject() {
     this.projectService.selectedProject = this.project;
+
+    this.router.navigate(['projects', this.project.name]);
   }
 }

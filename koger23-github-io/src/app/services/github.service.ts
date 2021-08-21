@@ -208,7 +208,7 @@ export class GithubService {
     }
   }
 
-  public getProjectDetails(projectName: string): ProjectDetails {
+  public getDetailsFromConfig(projectName: string): ProjectDetails {
     this.overlay.show();
     let details = new ProjectDetails();
 

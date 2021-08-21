@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { GithubService } from '../services/github.service';
 import { Project } from '../models/project.model';
 import { OverlayService } from './overlay.service';
+import { Utils } from '../helpers/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,11 @@ import { OverlayService } from './overlay.service';
 export class PostService {
   public selectedPost: Project;
 
-  constructor(private http: HttpClient, private githubService: GithubService, private overlay: OverlayService) {}
+  constructor(
+    private http: HttpClient,
+    private githubService: GithubService,
+    private overlay: OverlayService
+  ) {}
 
   /**
    * Getting markdown of post from the repository.
@@ -33,5 +38,31 @@ export class PostService {
       `${this.githubService.GITHUB_RAW_URL}/${this.githubService.USERNAME}/${this.githubService.USERNAME}/main/posts/${postName}.md`,
       HTTP_OPTIONS
     );
+  }
+
+  public getPostWithDetails(postName: string): Project {
+    let newProject = new Project();
+    newProject.name = postName;
+
+    this.getPostContent(postName).subscribe({
+      next: (resp) => {
+        this.overlay.show();
+
+        if (resp) {
+          newProject.content = Utils.replaceAll(
+            '(./',
+            `(${this.githubService.GITHUB_RAW_URL}/${this.githubService.USERNAME}/${this.githubService.USERNAME}/main/img/`,
+            resp
+          );
+        }
+
+        newProject.details =
+          this.githubService.getDetailsFromConfig(postName);
+      },
+      complete: () => {
+        this.overlay.hide();
+      },
+    });
+    return newProject;
   }
 }

@@ -52,7 +52,7 @@ export class PostsComponent implements OnInit {
               );
             }
 
-            newPost.details = this.githubService.getProjectDetails(postName);
+            newPost.details = this.githubService.getDetailsFromConfig(postName);
           },
           complete: () => {
             this.overlay.hide();

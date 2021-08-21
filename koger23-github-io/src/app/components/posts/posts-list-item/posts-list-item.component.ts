@@ -18,7 +18,7 @@ export class PostsListItemComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public onSelectProject() {
+  public onSelectPost() {
     this.postService.selectedPost = this.post;
 
     this.router.navigate(['/posts', this.post.name]);

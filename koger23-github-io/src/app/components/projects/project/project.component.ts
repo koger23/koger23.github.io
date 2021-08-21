@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { GithubService } from 'src/app/services/github.service';
 import { ProjectService } from 'src/app/services/project.service';
-import { Utils } from 'src/app/helpers/utils';
-import { OverlayService } from 'src/app/services/overlay.service';
 import { Project } from 'src/app/models/project.model';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,47 +11,26 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./project.component.css'],
 })
 export class ProjectComponent implements OnInit {
-  content: string;
   routeSub: Subscription;
   project: Project;
   faCalendarAlt = faCalendarAlt;
 
   constructor(
     private projectService: ProjectService,
-    private githubService: GithubService,
     private route: ActivatedRoute,
-    private overlayService: OverlayService
   ) {}
   private reponame: string;
 
   ngOnInit(): void {
     if (this.projectService.selectedProject) {
-      this.content = this.projectService.selectedProject.content;
+      this.project = this.projectService.selectedProject;
     } else {
       this.routeSub = this.route.params.subscribe((params) => {
         this.reponame = params['id'];
-        this.getProjectReadme();
+        this.project = this.projectService.getProjectWithDetails(this.reponame);
+        this.projectService.selectedProject = this.project;
       });
     }
-
-    this.project = this.projectService.selectedProject;
-  }
-
-  private getProjectReadme() {
-    this.projectService.getProjectReadme(this.reponame).subscribe({
-      next: (resp) => {
-        if (resp) {
-          // replace ./ for image paths in markdown files
-          this.content = Utils.replaceAll(
-            '(./',
-            `(${this.githubService.GITHUB_RAW_URL}/${this.githubService.USERNAME}/${this.reponame}/main/`,
-            resp
-          );
-        }
-      },
-      complete: () => {
-        this.overlayService.hide();
-      },
-    });
+    console.log(this.project);
   }
 }

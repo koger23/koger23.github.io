@@ -23,7 +23,7 @@
   <div>
     <p *ngIf="project.content && project.content.length > 0">
       {{ project.content | markdown | shortenContent }}
-      <a routerLink="/projects/{{ project.name }}" (click)="onSelectProject()"
+      <a routerLink="" (click)="onSelectProject()"
         >[Read more]</a
       >
     </p>
