@@ -19,11 +19,23 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" routerLink="/"
-        >Home <span class="sr-only">(current)</span></a
+        >{{ 'Home' | translate}} <span class="sr-only">(current)</span></a
       >
-      <a class="nav-item nav-link" routerLink="/posts">Posts</a>
-      <a class="nav-item nav-link" routerLink="/projects">Projects</a>
-      <a class="nav-item nav-link" routerLink="/about">About</a>
+      <a class="nav-item nav-link" routerLink="/posts">{{ 'Posts' | translate}}</a>
+      <a class="nav-item nav-link" routerLink="/projects">{{ 'Projects' | translate}}</a>
+      <a class="nav-item nav-link" routerLink="/about">{{ 'About' | translate}}</a>
     </div>
   </div>
+  <span class="form-inline">
+    <select 
+        class="form-control" 
+        #selectedLang 
+        (change)="switchLang(selectedLang.value)">
+      <option *ngFor="let language of translateService.getLangs()" 
+        [value]="language"
+        [selected]="language === translateService.currentLang">
+        {{ language }}
+      </option>
+    </select>
+  </span>
 </nav>

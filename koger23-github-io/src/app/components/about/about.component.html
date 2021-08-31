@@ -8,7 +8,7 @@
           style="width: 150px; height: 150px"
           alt="avatar.jpg"
         />
-        <div class="">
+        <div>
           <div class="row mb-4 flex justify-content-center text-center">
             <div id="name" class="col-9">
               <h4 class="mb-0">
@@ -79,10 +79,10 @@
         </div>
       </div>
     </div>
-    <div id="certs">
+    <div id="certs" class="mt-4">
       <h3>Certifications, bages</h3>
       <hr />
-      <div class="d-flex flex-wrap">
+      <div class="d-flex justify-content-lg-around flex-wrap">
         <img
           *ngFor="let cert of config.bages"
           src="{{ cert }}"
@@ -90,7 +90,52 @@
         />
       </div>
     </div>
-    <div>
+    <div class="mt-4">
+      <h3>Language skills</h3>
+      <hr />
+      <div class="d-flex justify-content-lg-around flex-wrap">
+        <ngx-gauge
+          value="60"
+          [type]="gauge.type"
+          [size]="gauge.size"
+          [thick]="gauge.thickness"
+          [duration]="gauge.duration"
+          [append]="gauge.suffix"
+          [foregroundColor]="gauge.foreColor"
+        >
+          <ngx-gauge-label>
+            {{ "German" | translate }}
+          </ngx-gauge-label>
+        </ngx-gauge>
+        <ngx-gauge
+          value="80"
+          [type]="gauge.type"
+          [size]="gauge.size"
+          [thick]="gauge.thickness"
+          [duration]="gauge.duration * 1.5"
+          [append]="gauge.suffix"
+          [foregroundColor]="gauge.foreColor"
+        >
+          <ngx-gauge-label>
+            {{ "English" | translate }}
+          </ngx-gauge-label>
+        </ngx-gauge>
+        <ngx-gauge
+          value="100"
+          [type]="gauge.type"
+          [size]="gauge.size"
+          [thick]="gauge.thickness"
+          [duration]="gauge.duration * 2"
+          [append]="gauge.suffix"
+          [foregroundColor]="gauge.foreColor"
+        >
+          <ngx-gauge-label>
+            {{ "Hungarian" | translate }}
+          </ngx-gauge-label>
+        </ngx-gauge>
+      </div>
+    </div>
+    <div class="mt-2">
       <div id="aboutme" *ngIf="contentAboutMe && contentAboutMe.length > 0">
         <h3>About Me</h3>
         <hr />

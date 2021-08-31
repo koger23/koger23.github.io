@@ -12,9 +12,7 @@ p {
 
 #aboutme,
 #certs {
-  max-width: fit-content;
   min-width: 250px;
-  margin-top: 20px;
   background-color: white;
 }
 
@@ -65,13 +63,11 @@ fa-icon {
 
   #aboutme {
     max-width: fit-content;
-    margin-top: 20px;
     background-color: white;
   }
 
   #certs {
     max-width: fit-content;
-    margin-top: 20px;
     background-color: white;
   }
 }
