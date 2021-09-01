@@ -79,14 +79,14 @@
         </div>
       </div>
     </div>
-    <div id="certs" class="mt-4">
+    <div class="mt-4">
       <h3>Certifications, bages</h3>
       <hr />
       <div class="d-flex justify-content-lg-around flex-wrap">
         <img
           *ngFor="let cert of config.bages"
           src="{{ cert }}"
-          style="width: 150px"
+          style="max-height: 150px"
         />
       </div>
     </div>
