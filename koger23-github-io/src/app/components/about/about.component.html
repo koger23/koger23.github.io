@@ -1,6 +1,6 @@
 <div>
   <div class="container">
-    <div class="d-flex flex-wrap">
+    <div class="flex flex-wrap">
       <div class="d-flex flex-wrap">
         <img
           src="{{ config.avatarUrl }}"
@@ -79,14 +79,14 @@
         </div>
       </div>
     </div>
-    <div id="certs" class="mt-4">
+    <div class="mt-4">
       <h3>Certifications, bages</h3>
       <hr />
       <div class="d-flex justify-content-lg-around flex-wrap">
         <img
           *ngFor="let cert of config.bages"
           src="{{ cert }}"
-          style="width: 150px"
+          style="max-height: 150px"
         />
       </div>
     </div>
@@ -104,7 +104,7 @@
           [foregroundColor]="gauge.foreColor"
         >
           <ngx-gauge-label>
-            {{ "German" | translate }}
+            German
           </ngx-gauge-label>
         </ngx-gauge>
         <ngx-gauge
@@ -117,7 +117,7 @@
           [foregroundColor]="gauge.foreColor"
         >
           <ngx-gauge-label>
-            {{ "English" | translate }}
+            English
           </ngx-gauge-label>
         </ngx-gauge>
         <ngx-gauge
@@ -130,7 +130,7 @@
           [foregroundColor]="gauge.foreColor"
         >
           <ngx-gauge-label>
-            {{ "Hungarian" | translate }}
+            Hungarian
           </ngx-gauge-label>
         </ngx-gauge>
       </div>

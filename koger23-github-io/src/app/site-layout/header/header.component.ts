@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { GithubService } from 'src/app/services/github.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class HeaderComponent implements OnInit {
   fullname: string;
   hasFullname: boolean = false;
 
-  constructor(private githubService: GithubService, public translateService: TranslateService) {}
+  constructor(private githubService: GithubService) {}
 
   ngOnInit(): void {
     this.username = this.githubService.USERNAME;
@@ -22,9 +21,5 @@ export class HeaderComponent implements OnInit {
         this.hasFullname = true;
       }
     });
-  }
-
-  switchLang(lang: string) {
-    this.translateService.use(lang);
   }
 }
