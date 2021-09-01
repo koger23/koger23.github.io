@@ -41,6 +41,7 @@ export class AboutComponent implements OnInit {
     foreColor: 'rgba(0, 128, 255, 1)',
     suffix: '%',
     duration: 700,
+    cap: "round",
   };
 
   constructor(
