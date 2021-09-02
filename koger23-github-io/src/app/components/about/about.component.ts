@@ -34,16 +34,6 @@ export class AboutComponent implements OnInit {
   configSubscription = new Subscription();
   config: Config;
 
-  gauge = {
-    type: 'semi',
-    size: '150',
-    thickness: 15,
-    foreColor: 'rgba(0, 128, 255, 1)',
-    suffix: '%',
-    duration: 700,
-    cap: "round",
-  };
-
   constructor(
     private githubService: GithubService,
     private overlayService: OverlayService

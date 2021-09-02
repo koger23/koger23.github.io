@@ -1,0 +1,40 @@
+<div>
+  <div class="d-flex justify-content-lg-around flex-wrap">
+    <ngx-gauge
+      value="60"
+      [type]="gauge.type"
+      [size]="gauge.size"
+      [thick]="gauge.thickness"
+      [duration]="gauge.duration"
+      [append]="gauge.suffix"
+      [foregroundColor]="gauge.foreColor"
+      [cap]="gauge.cap"
+    >
+      <ngx-gauge-label> German </ngx-gauge-label>
+    </ngx-gauge>
+    <ngx-gauge
+      value="80"
+      [type]="gauge.type"
+      [size]="gauge.size"
+      [thick]="gauge.thickness"
+      [duration]="gauge.duration * 1.5"
+      [append]="gauge.suffix"
+      [foregroundColor]="gauge.foreColor"
+      [cap]="gauge.cap"
+    >
+      <ngx-gauge-label> English </ngx-gauge-label>
+    </ngx-gauge>
+    <ngx-gauge
+      value="100"
+      [type]="gauge.type"
+      [size]="gauge.size"
+      [thick]="gauge.thickness"
+      [duration]="gauge.duration * 2"
+      [append]="gauge.suffix"
+      [foregroundColor]="gauge.foreColor"
+      [cap]="gauge.cap"
+    >
+      <ngx-gauge-label> Hungarian </ngx-gauge-label>
+    </ngx-gauge>
+  </div>
+</div>

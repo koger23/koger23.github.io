@@ -21,6 +21,11 @@ import { PostsComponent } from './components/posts/posts.component';
 import { PostComponent } from './components/posts/post/post.component';
 import { PostsListItemComponent } from './components/posts/posts-list-item/posts-list-item.component';
 import { NgxGaugeModule } from 'ngx-gauge';
+import { SkillsComponent } from './components/about/skills/skills.component';
+import { LanguageSkillComponent } from './components/about/skills/language-skill/language-skill.component';
+import { SoftSkillComponent } from './components/about/skills/soft-skill/soft-skill.component';
+import { HardSkillComponent } from './components/about/skills/hard-skill/hard-skill.component';
+import { SkillComponent } from './components/about/skills/skill/skill.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +43,11 @@ import { NgxGaugeModule } from 'ngx-gauge';
     PostsComponent,
     PostComponent,
     PostsListItemComponent,
+    SkillsComponent,
+    LanguageSkillComponent,
+    SoftSkillComponent,
+    HardSkillComponent,
+    SkillComponent,
   ],
   imports: [
     BrowserModule,
