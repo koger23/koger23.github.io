@@ -2,17 +2,26 @@
   <h3>Skills</h3>
   <hr />
   <div class="d-flex justify-content-center">
-    <ul class="list-group list-group-horizontal">
-      <li class="list-group-item border-0 pt-0" *ngFor="let skill of skills">
-        <button (click)="onSelectSkill(skill)" class="btn btn-link">{{ skill.name }}</button>
-      </li>
-      <li class="list-group-item border-0 pt-0" *ngFor="let skill of otherSkills">
-        <button class="btn btn-link">{{ skill.name }}</button>
+    <ul class="list-group list-group-horizontal flex-wrap">
+      <li
+        class="list-group-item border-0 pb-0 pt-0"
+        *ngFor="let skillGrp of skillGroups"
+      >
+        <button (click)="onSelectSkill(skillGrp)" class="btn btn-link">
+          {{ skillGrp.name }}
+        </button>
       </li>
     </ul>
   </div>
-  <app-language-skill *ngIf='isLanguageSkillSelected'></app-language-skill>
-  <app-hard-skill *ngIf='isHardSkillSelected'></app-hard-skill>
-  <app-soft-skill *ngIf='isSoftSkillSelected'></app-soft-skill>
-  <app-skill *ngFor="let skill of otherSkills"></app-skill>
+  <div class="row" *ngFor="let skillGrp of skillGroups">
+    <div *ngIf="skillGrp.isVisible" class="col">
+      <ul class="d-flex flex-wrap" [ngClass]="skillGrp.type == 2 ? 'justify-content-lg-around' : ''">
+        <app-skill
+        [ngClass]="skillGrp.type == 2 ? 'col-3' : 'col-6'"
+          *ngFor="let skill of skillGrp.skills"
+          [skill]="skill"
+        ></app-skill>
+      </ul>
+    </div>
+  </div>
 </div>

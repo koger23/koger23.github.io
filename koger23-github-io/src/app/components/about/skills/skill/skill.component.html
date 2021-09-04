@@ -1,1 +1,21 @@
-<p>skill works!</p>
+<li [ngClass]="skill.type == 2 ? 'list-unstyled' : ''">
+  <div class="d-flex flex-wrap" *ngIf="skill.type != 2">
+    <p>
+      {{ skill.name }}
+      <span *ngIf="skill.type < 3">{{ skill.value }}</span>
+    </p>
+  </div>
+  <ngx-gauge
+    *ngIf="skill.type == 2"
+    [value]="skill.value"
+    [type]="skill.gauge.type"
+    [size]="skill.gauge.size"
+    [thick]="skill.gauge.thickness"
+    [duration]="skill.gauge.duration"
+    [append]="skill.gauge.suffix"
+    [foregroundColor]="skill.gauge.foreColor"
+    [cap]="skill.gauge.cap"
+  >
+    <ngx-gauge-label>{{ skill.name }}</ngx-gauge-label>
+  </ngx-gauge>
+</li>
