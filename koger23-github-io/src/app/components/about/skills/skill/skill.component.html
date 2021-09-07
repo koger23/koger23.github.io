@@ -4,7 +4,7 @@
       <div [ngClass]="skill.type == 3 ? 'col-12' : 'col-6'">
         {{ skill.name }}
       </div>
-      <div *ngIf="skill.type < 3" class="col-4">
+      <div *ngIf="skill.type < 3" class="col-5">
         <span
           >{{ skill.value | leveling: skill.type }}
         </span>

@@ -5,6 +5,8 @@ import { ConfigIniParser } from 'config-ini-parser';
 import { ProjectDetails } from '../models/project-details.model';
 import { BehaviorSubject } from 'rxjs';
 import { Config } from '../models/config.model';
+import { SkillGroup } from '../components/about/skills/skills.component';
+import { Skill, SkillType } from '../components/about/skills/skill/skill.component';
 
 const DEFAULT_SECTION = 'DEFAULT';
 
@@ -123,8 +125,8 @@ export class GithubService {
     this.isParserLoaded.next(true);
     this.parser.parse(configContent);
     let config = new Config();
-    
-    config.avatarUrl = `${this.GITHUB_RAW_URL}/${this.USERNAME}/${this.USERNAME}/main/img/avatar.jpg`
+
+    config.avatarUrl = `${this.GITHUB_RAW_URL}/${this.USERNAME}/${this.USERNAME}/main/img/avatar.jpg`;
 
     if (this.parser.isHaveSection(DEFAULT_SECTION)) {
       if (this.parser.isHaveOption(DEFAULT_SECTION, 'projects')) {
@@ -192,11 +194,28 @@ export class GithubService {
               );
             });
         }
+
+        if (this.parser.isHaveOption(DEFAULT_SECTION, 'other_skills')) {
+          config.otherSkillsSections = this.parser
+            .get(DEFAULT_SECTION, 'other_skills')
+            .split(',');
+        }
+        this.loadSkillsFromSection(config, 'SOFT_SKILLS');
+        this.loadSkillsFromSection(config, 'HARD_SKILLS');
+        this.loadSkillsFromSection(config, 'LANGUAGE_SKILLS');
+
+        config.otherSkillsSections.forEach((sectionName) => {
+          this.loadSkillsFromSection(config, sectionName);
+        });
       }
     }
 
     this.config.next(config);
     this.overlay.hide();
+  }
+
+  public getOtherSkills(): string[] {
+    return this.config.getValue().otherSkillsSections;
   }
 
   public getCertifications(): string[] {
@@ -246,5 +265,65 @@ export class GithubService {
       },
     });
     return this.projectNames;
+  }
+
+  public getSoftSkills() {
+    let skills: Skill[] = [];
+
+    if (this.config.getValue()) {
+      const obj = this.config.getValue()["soft_skills"];
+      for (const key in obj) {
+        let newSkill = new Skill(key, SkillType.SOFT, obj[key]);
+        skills.push(newSkill);
+      }
+    } else {
+      console.warn("Soft skills are not loaded.");
+    }
+
+    return new SkillGroup(skills, SkillType.SOFT, 'Soft');
+  }
+
+  public getHardSkills() {
+    let skills: Skill[] = [];
+
+    if (this.config.getValue()) {
+      const obj = this.config.getValue()["hard_skills"];
+      for (const key in obj) {
+        let newSkill = new Skill(key, SkillType.HARD, obj[key]);
+        skills.push(newSkill);
+      }
+    } else {
+      console.warn("Hard skills are not loaded.");
+    }
+
+    return new SkillGroup(skills, SkillType.HARD, 'Hard');
+  }
+
+  public getLanguageSkills() {
+    let skills: Skill[] = [];
+
+    if (this.config.getValue()) {
+      const obj = this.config.getValue()["language_skills"];
+      for (const key in obj) {
+        let newSkill = new Skill(key, SkillType.LANG, obj[key]);
+        skills.push(newSkill);
+      }
+    } else {
+      console.warn("Language skills are not loaded.");
+    }
+
+    return new SkillGroup(skills, SkillType.LANG, 'Languages');
+  }
+
+  private loadSkillsFromSection(config: Config, sectionName: string) {
+    let skillCollection = new Object();
+
+    if (this.parser.isHaveSection(sectionName)) {
+      this.parser.items(sectionName).forEach((item) => {
+        skillCollection[item[0]] = item[1];
+      });
+    }
+    config[sectionName.toLowerCase()] = skillCollection;
+    console.log(config);
   }
 }

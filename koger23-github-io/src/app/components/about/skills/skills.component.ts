@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GithubService } from 'src/app/services/github.service';
 import { Skill, SkillType } from './skill/skill.component';
 
 @Component({
@@ -20,35 +21,13 @@ export class SkillsComponent implements OnInit {
   ];
   selectedSkillGroup: SkillGroup = this.skillGroups[0];
 
-  constructor() {
-    let soft = new SkillGroup(
-      [
-        new Skill('Helpfullness', SkillType.SOFT, 5),
-        new Skill('Knowledge-sharing', SkillType.SOFT, 5),
-        new Skill('Empathy', SkillType.SOFT, 4),
-        new Skill('Communication', SkillType.SOFT, 3),
-      ],
-      SkillType.SOFT,
-      'Soft'
-    );
-    let hard = new SkillGroup(
-      [
-        new Skill('Python', SkillType.HARD, 3),
-        new Skill('JavaScript', SkillType.HARD, 2),
-        new Skill('Git', SkillType.HARD, 2),
-      ],
-      SkillType.HARD,
-      'Hard'
-    );
-    let lang = new SkillGroup(
-      [
-        new Skill('Hungarian', SkillType.LANG, 100),
-        new Skill('English', SkillType.LANG, 80),
-        new Skill('German', SkillType.LANG, 70),
-      ],
-      SkillType.LANG,
-      'Language'
-    );
+  constructor(private gitHubService: GithubService) {}
+
+  ngOnInit(): void {
+    let softSkills = this.gitHubService.getSoftSkills();
+    let hardSkills = this.gitHubService.getHardSkills();
+    let langSkills = this.gitHubService.getLanguageSkills();
+    this.gitHubService.getOtherSkills();
     let ms = new SkillGroup(
       [
         new Skill('Dynamics 365 Sales', SkillType.GENERAL),
@@ -59,9 +38,9 @@ export class SkillsComponent implements OnInit {
       SkillType.GENERAL,
       'Power Platform'
     );
-    this.skillGroups.push(soft);
-    this.skillGroups.push(hard);
-    this.skillGroups.push(lang);
+    this.skillGroups.push(softSkills);
+    this.skillGroups.push(hardSkills);
+    this.skillGroups.push(langSkills);
     this.skillGroups.push(ms);
     console.log(this.skillGroups);
 
@@ -70,8 +49,6 @@ export class SkillsComponent implements OnInit {
       this.selectedSkillGroup.isVisible = true;
     }
   }
-
-  ngOnInit(): void {}
 
   onSelectSkill(skillGrp: SkillGroup) {
     this.selectedSkillGroup.isVisible = false;
@@ -85,6 +62,6 @@ export class SkillGroup {
     public skills: Skill[],
     public type: SkillType,
     public name: string,
-    public isVisible: boolean = false,
+    public isVisible: boolean = false
   ) {}
 }

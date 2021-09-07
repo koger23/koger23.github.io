@@ -15,4 +15,5 @@ export class Config {
     tools: string;
     linkedInUrl: string;
     githubUrl: string;
+    otherSkillsSections: string[] = [];
 }
