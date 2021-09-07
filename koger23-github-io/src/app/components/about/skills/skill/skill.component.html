@@ -1,9 +1,16 @@
 <li [ngClass]="skill.type == 2 ? 'list-unstyled' : ''">
-  <div class="d-flex flex-wrap" *ngIf="skill.type != 2">
-    <p>
-      {{ skill.name }}
-      <span *ngIf="skill.type < 3">{{ skill.value }}</span>
-    </p>
+  <div class="" *ngIf="skill.type != 2">
+    <div class="row">
+      <div [ngClass]="skill.type == 3 ? 'col-12' : 'col-6'">
+        {{ skill.name }}
+      </div>
+      <div *ngIf="skill.type < 3" class="col-4">
+        <span
+          >{{ skill.value | leveling: skill.type }}
+        </span>
+        <span *ngIf="skill.type === 0">({{ skill.value }})</span>
+      </div>
+    </div>
   </div>
   <ngx-gauge
     *ngIf="skill.type == 2"

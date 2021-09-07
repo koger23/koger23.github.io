@@ -26,6 +26,7 @@ import { LanguageSkillComponent } from './components/about/skills/language-skill
 import { SoftSkillComponent } from './components/about/skills/soft-skill/soft-skill.component';
 import { HardSkillComponent } from './components/about/skills/hard-skill/hard-skill.component';
 import { SkillComponent } from './components/about/skills/skill/skill.component';
+import { SkillLevelPipe } from './pipes/skill-level.pipe';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SkillComponent } from './components/about/skills/skill/skill.component'
     SoftSkillComponent,
     HardSkillComponent,
     SkillComponent,
+    SkillLevelPipe,
   ],
   imports: [
     BrowserModule,
