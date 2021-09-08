@@ -199,23 +199,16 @@ export class GithubService {
           config.otherSkillsSections = this.parser
             .get(DEFAULT_SECTION, 'other_skills')
             .split(',');
+            console.log(config.otherSkillsSections);
         }
         this.loadSkillsFromSection(config, 'SOFT_SKILLS');
         this.loadSkillsFromSection(config, 'HARD_SKILLS');
         this.loadSkillsFromSection(config, 'LANGUAGE_SKILLS');
-
-        config.otherSkillsSections.forEach((sectionName) => {
-          this.loadSkillsFromSection(config, sectionName);
-        });
       }
     }
 
     this.config.next(config);
     this.overlay.hide();
-  }
-
-  public getOtherSkills(): string[] {
-    return this.config.getValue().otherSkillsSections;
   }
 
   public getCertifications(): string[] {
@@ -315,7 +308,30 @@ export class GithubService {
     return new SkillGroup(skills, SkillType.LANG, 'Languages');
   }
 
-  private loadSkillsFromSection(config: Config, sectionName: string) {
+  public getOtherSkills(): SkillGroup[] {
+    const config: Config = this.config.getValue();
+    const skillGroups: SkillGroup[] = [];
+    const sections = config.otherSkillsSections;
+
+    sections.forEach((sectionName) => {
+      let skills: Skill[] = [];
+      let skillGroupName: string;
+
+      if (this.parser.isHaveSection(sectionName)) {
+        const skillNames = this.parser.get(sectionName, "skills").split(";");
+        skillGroupName = this.parser.get(sectionName, "title");
+
+        skillNames.forEach((skillName: string) => {
+          skills.push(new Skill(skillName, SkillType.GENERAL));
+        });
+      }
+      skillGroups.push(new SkillGroup(skills, SkillType.GENERAL, skillGroupName));
+    });
+
+    return skillGroups;
+  }
+
+  private loadSkillsFromSection(config: Config, sectionName: string): void {
     let skillCollection = new Object();
 
     if (this.parser.isHaveSection(sectionName)) {
@@ -324,6 +340,5 @@ export class GithubService {
       });
     }
     config[sectionName.toLowerCase()] = skillCollection;
-    console.log(config);
   }
 }

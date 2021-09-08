@@ -10,15 +10,6 @@ import { Skill, SkillType } from './skill/skill.component';
 export class SkillsComponent implements OnInit {
   skillGroups: SkillGroup[] = [];
 
-  skills: Skill[] = [
-    new Skill('Hungarian', SkillType.LANG, 100),
-    new Skill('English', SkillType.LANG, 79),
-    new Skill('German', SkillType.LANG, 5),
-    new Skill('Python', SkillType.HARD, 3),
-    new Skill('JavaScript', SkillType.HARD, 2),
-    new Skill('Dynamics 365 Sales', SkillType.GENERAL),
-    new Skill('Dynamics 365 for Marketing', SkillType.GENERAL),
-  ];
   selectedSkillGroup: SkillGroup = this.skillGroups[0];
 
   constructor(private gitHubService: GithubService) {}
@@ -27,21 +18,12 @@ export class SkillsComponent implements OnInit {
     let softSkills = this.gitHubService.getSoftSkills();
     let hardSkills = this.gitHubService.getHardSkills();
     let langSkills = this.gitHubService.getLanguageSkills();
-    this.gitHubService.getOtherSkills();
-    let ms = new SkillGroup(
-      [
-        new Skill('Dynamics 365 Sales', SkillType.GENERAL),
-        new Skill('Dynamics 365 Customer Service', SkillType.GENERAL),
-        new Skill('Power Apps', SkillType.GENERAL),
-        new Skill('Power Automate', SkillType.GENERAL),
-      ],
-      SkillType.GENERAL,
-      'Power Platform'
-    );
+    let others = this.gitHubService.getOtherSkills();
+
     this.skillGroups.push(softSkills);
     this.skillGroups.push(hardSkills);
     this.skillGroups.push(langSkills);
-    this.skillGroups.push(ms);
+    this.skillGroups = [...this.skillGroups, ...others];
     console.log(this.skillGroups);
 
     if (this.skillGroups.length > 0) {
