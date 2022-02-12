@@ -2,12 +2,7 @@
   <div class="container">
     <div class="flex flex-wrap">
       <div class="d-flex flex-wrap">
-        <img
-          src="{{ config.avatarUrl }}"
-          class="rounded mb-3"
-          style="width: 150px; height: 150px"
-          alt="avatar.jpg"
-        />
+        <img src="{{ config.avatarUrl }}" class="rounded mb-3" style="width: 150px; height: 150px" alt="avatar.jpg" />
         <div>
           <div class="row mb-4 flex justify-content-center text-center">
             <div id="name" class="col-9">
@@ -19,63 +14,31 @@
               </p>
             </div>
             <div id="contact" class="col-9 row justify-content-center">
-              <a href="mailto:{{ config.email }}"
-                ><fa-icon
-                  [icon]="faEnvelope"
-                  size="2x"
-                  [styles]="{ color: 'grey' }"
-                ></fa-icon
-              ></a>
-              <a href="{{ config.linkedInUrl }}"
-                ><fa-icon
-                  [icon]="faLinkedin"
-                  size="2x"
-                  [styles]="{ color: 'grey' }"
-                ></fa-icon
-              ></a>
-              <a href="{{ config.githubUrl }}"
-                ><fa-icon
-                  [icon]="faGithub"
-                  size="2x"
-                  [styles]="{ color: 'grey' }"
-                ></fa-icon
-              ></a>
+              <a href="mailto:{{ config.email }}">
+                <fa-icon [icon]="faEnvelope" size="2x" [styles]="{ color: 'grey' }"></fa-icon>
+              </a>
+              <a href="{{ config.linkedInUrl }}">
+                <fa-icon [icon]="faLinkedin" size="2x" [styles]="{ color: 'grey' }"></fa-icon>
+              </a>
+              <a href="{{ config.githubUrl }}">
+                <fa-icon [icon]="faGithub" size="2x" [styles]="{ color: 'grey' }"></fa-icon>
+              </a>
             </div>
           </div>
-          <fa-icon
-            [icon]="faGraduationCap"
-            size="xl"
-            [styles]="{ color: 'grey' }"
-          ></fa-icon
-          ><span class="text-muted">{{ config.degrees }}</span>
+          <fa-icon [icon]="faGraduationCap" size="xl" [styles]="{ color: 'grey' }"></fa-icon><span class="text-muted">{{
+            config.degrees }}</span>
           <br />
-          <fa-icon
-            [icon]="faGlobe"
-            size="xl"
-            [styles]="{ color: 'grey' }"
-          ></fa-icon
-          ><span class="text-muted">{{ config.languages }}</span>
+          <fa-icon [icon]="faGlobe" size="xl" [styles]="{ color: 'grey' }"></fa-icon><span class="text-muted">{{
+            config.languages }}</span>
           <br />
-          <fa-icon
-            [icon]="faMapMarkedAlt"
-            size="xl"
-            [styles]="{ color: 'grey' }"
-          ></fa-icon
-          ><span class="text-muted">{{ config.location }}</span>
+          <fa-icon [icon]="faMapMarkedAlt" size="xl" [styles]="{ color: 'grey' }"></fa-icon><span class="text-muted">{{
+            config.location }}</span>
           <br />
-          <fa-icon
-            [icon]="faLayerGroup"
-            size="xl"
-            [styles]="{ color: 'grey' }"
-          ></fa-icon
-          ><span class="text-muted">{{ config.stack }}</span>
+          <fa-icon [icon]="faLayerGroup" size="xl" [styles]="{ color: 'grey' }"></fa-icon><span class="text-muted">{{
+            config.stack }}</span>
           <br />
-          <fa-icon
-            [icon]="faTools"
-            size="xl"
-            [styles]="{ color: 'grey' }"
-          ></fa-icon
-          ><span class="text-muted">{{ config.tools }}</span>
+          <fa-icon [icon]="faTools" size="xl" [styles]="{ color: 'grey' }"></fa-icon><span class="text-muted">{{
+            config.tools }}</span>
         </div>
       </div>
     </div>
@@ -83,11 +46,11 @@
       <h3>Certifications, bages</h3>
       <hr />
       <div class="d-flex justify-content-lg-around flex-wrap">
-        <img
-          *ngFor="let cert of config.bages"
-          src="{{ cert }}"
-          style="max-height: 150px"
-        />
+        <img *ngFor="let cert of config.bages" src="{{ cert }}" style="max-height: 150px" />
+      </div>
+      <div class="d-flex justify-content-center mt-3">
+        <span>For full list and verification, check me on: <a
+            href="https://www.credly.com/users/gergely-kocsis.7cbf3029/badges">Credly.com</a></span>
       </div>
     </div>
     <div class="mt-4">
@@ -101,10 +64,7 @@
       </div>
     </div>
   </div>
-  <div
-    class="container"
-    *ngIf="contentAboutSite && contentAboutSite.length > 10"
-  >
+  <div class="container" *ngIf="contentAboutSite && contentAboutSite.length > 10">
     <h3>About The Site</h3>
     <hr />
     <p [innerHTML]="contentAboutSite | markdown"></p>
